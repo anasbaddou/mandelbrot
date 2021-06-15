@@ -1,6 +1,4 @@
--- Ian Roth
--- ECE 8455
--- pipelined Mandelbrot Set, final project
+
 LIBRARY ieee;
 USE ieee.std_logic_1164.all;
 USE ieee.numeric_std.all;
