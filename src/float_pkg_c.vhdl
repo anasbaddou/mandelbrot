@@ -1,21 +1,4 @@
--- --------------------------------------------------------------------
--- "float_pkg" package contains functions for floating point math.
--- Please see the documentation for the floating point package.
--- This package should be compiled into "ieee_proposed" and used as follows:
--- use ieee.std_logic_1164.all;
--- use ieee.numeric_std.all;
--- use ieee_proposed.fixed_float_types.all;
--- use ieee_proposed.fixed_pkg.all;
--- use ieee_proposed.float_pkg.all;
---
---  This verison is designed to work with the VHDL-93 compilers.  Please
---  note the "%%%" comments.  These are where we diverge from the
---  VHDL-200X LRM.
---
--- --------------------------------------------------------------------
--- Version    : $Revision: 2.0 $
--- Date       : $Date: 2009/01/27 20:45:30 $
--- --------------------------------------------------------------------
+
 
 use STD.TEXTIO.all;
 library IEEE;
@@ -66,47 +49,17 @@ package float_pkg is
   subtype UNRESOLVED_float32 is UNRESOLVED_float (8 downto -23);
   alias U_float32 is UNRESOLVED_float32;
   subtype float32 is float (8 downto -23);
-  -----------------------------------------------------------------------------
-  -- IEEE-754 single precision floating point.  This is a "float"
-  -- in C, and a FLOAT in Fortran.  The exponent is 8 bits wide, and
-  -- the fraction is 23 bits wide.  This format can hold roughly 7 decimal
-  -- digits.  Infinity is 2**127 = 1.7E38 in this number system.
-  -- The bit representation is as follows:
-  -- 1 09876543 21098765432109876543210
-  -- 8 76543210 12345678901234567890123
-  -- 0 00000000 00000000000000000000000
-  -- 8 7      0 -1                  -23
-  -- +/-   exp.  fraction
-  -----------------------------------------------------------------------------
 
-  -- IEEE 754 double precision
+
+  
   subtype UNRESOLVED_float64 is UNRESOLVED_float (11 downto -52);
   alias U_float64 is UNRESOLVED_float64;
   subtype float64 is float (11 downto -52);
-  -----------------------------------------------------------------------------
-  -- IEEE-754 double precision floating point.  This is a "double float"
-  -- in C, and a FLOAT*8 in Fortran.  The exponent is 11 bits wide, and
-  -- the fraction is 52 bits wide.  This format can hold roughly 15 decimal
-  -- digits.  Infinity is 2**2047 in this number system.
-  -- The bit representation is as follows:
-  --  3 21098765432 1098765432109876543210987654321098765432109876543210
-  --  1 09876543210 1234567890123456789012345678901234567890123456789012
-  --  S EEEEEEEEEEE FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-  -- 11 10        0 -1                                               -52
-  -- +/-  exponent    fraction
-  -----------------------------------------------------------------------------
 
-  -- IEEE 854 & C extended precision
   subtype UNRESOLVED_float128 is UNRESOLVED_float (15 downto -112);
   alias U_float128 is UNRESOLVED_float128;
   subtype float128 is float (15 downto -112);
-  -----------------------------------------------------------------------------
-  -- The 128 bit floating point number is "long double" in C (on
-  -- some systems this is a 70 bit floating point number) and FLOAT*32
-  -- in Fortran.  The exponent is 15 bits wide and the fraction is 112
-  -- bits wide. This number can handle approximately 33 decimal digits.
-  -- Infinity is 2**32,767 in this number system.
-  -----------------------------------------------------------------------------
+
 
   -- purpose: Checks for a valid floating point number
   type valid_fpstate is (nan,           -- Signaling NaN (C FP_NAN)
